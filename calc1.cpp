@@ -9,7 +9,7 @@ float * zNought(float h, float Erat){
 
     static float zNoughtValues[10];
 
-    for (int i = 1; i < 11; i++) {
+    for (int i; i < 11; i++) {
         zNoughtValues[i] = ( i*h*(Erat-1) )/(2*(i+2)*(Erat+1));
     }
 
@@ -29,7 +29,7 @@ float * calcDeff (float h, float Erat, float Dc, float* zNoughtValues) {
 
     static float DeffValues[10];
 
-    for (int i = 1; i < 11; i++) {
+    for (int i; i < 11; i++) {
         DeffValues[i] = ( (12*Dc/Erat) * ( ( (3*Erat*(pow(i,2) + i + 2)) + (pow(i,3) + 3*pow(i,2) + 8*i) )/( 12*(i+1)*(pow(i,2) + 5*i + 6) ) - (zNoughtValues[i]* i * (Erat-1))/(h*(i+1)*(i+2)) + (pow(zNoughtValues[i],2)*(Erat+i))/(h * (i+1)) ) );
     }
 
@@ -40,7 +40,7 @@ float * calcINought (float rhoc, float h, float rhorat) {
 
     static float iNoughtValues[10];
 
-    for (int i = 1; i<11 ; i++) {
+    for (int i; i<11 ; i++) {
         iNoughtValues[i] = (rhoc*h/rhorat) * ( ( (rhorat - 1)/(i+1) ) + 1 );
     }
 
@@ -76,7 +76,7 @@ int main () {
     float *iNought;
     iNought = calcINought(rhoc, h, rhorat);
 
-    for (int i = 1; i<11; i++){
+    for (int i; i<11; i++){
         printf("for k = %d, z0 = %f, Deff = %.12lf, i0 = %f \n" , i, *(zNoughtValues + i), *(Deff + i), *(iNought + i));
     }
 
